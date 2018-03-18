@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+.nuxt/
+config.js
+dist/
+npm-debug.log*
+public/

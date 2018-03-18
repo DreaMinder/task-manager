@@ -1,0 +1,14 @@
+{
+	"footer": "If you have questions, found an issue or just willing to help, use this email to contact me:",
+  "waiting": "Waiting",
+  "done": "Done",
+  "not_done": "Not done",
+  "working": "Working",
+  "snooze": "Snooze",
+  "card-hint": "Start typing card name...",
+  "user-hint": "Start typing name or email of user...",
+  "interface-hint": "Interface settings are different for multiple devices.",
+	"leave": "Data is not saved. Are you sure you want to leave?",
+	"task_changed": "Task changed",
+	"table_edited": "Table edited"
+}
