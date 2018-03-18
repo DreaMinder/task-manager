@@ -39,12 +39,12 @@ module.exports = {
     const invite = await Invite.create({
       email: ctx.params.email
     })
-
-    const link = 'http://tasks.module-5.com/api/auth/register/' + invite._id;
+//hardcode your url
+    const link = '/api/auth/register/' + invite._id;
 
     const message = [
       'Здравствуйте.',
-      'Один из пользователей сервиса tasks.module-5.com выслал Вам приглашение для регистрации.',
+      'Один из пользователей сервиса Task Manager выслал Вам приглашение для регистрации.',
       'Пожалуйста, пройдите по ссылке чтобы начать регистрацию в Таск Менеджере:',
       '<a href="'+ link +'">'+ link +'</a>'
     ];
@@ -53,7 +53,7 @@ module.exports = {
       success: true
     }
     transporter.sendMail({
-      from: 'Task Manager <sales@odesd2.com>',
+      from: 'Task Manager',
       to: ctx.params.email,
       subject: 'Приглашение',
       html: message.join('<br>')
