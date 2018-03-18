@@ -40,13 +40,17 @@ $ npm start
 
 #### FAQ:
 *Q: No tests, no eslint, no env vars?*
+
 A: Yep. Trying to keep it as simple as possible, so any part could be quickly rewritten.
 
 *Q: What do you expect from community?*
+
 A: I expect that people would use it not only to learn but also to implement custom task managers for their own projects. If it would be so, code quality will rise and new features will be implemented.
 
 *Q: Why do this project exsists?*
+
 A: Team of my co-workers have been using trello. It was fine except lack of some specific features. So I implemented this project and now they use it. Also it was my master degree project.
 
 *Q: Why OpenSource?*
+
 A: I realised that it still pretty much far away from commercial use. People asked me to share the code, so here it is.
