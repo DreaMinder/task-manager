@@ -39,7 +39,8 @@ module.exports = {
     const invite = await Invite.create({
       email: ctx.params.email
     })
-//hardcode your url
+	
+	//hardcode your url
     const link = '/api/auth/register/' + invite._id;
 
     const message = [
