@@ -1,6 +1,6 @@
 # Vue.js Task Manager
 
-Demo: demo.module-5.com
+Demo: [demo.module-5.com](http://demo.module-5.com/)
 
 #### Features:
   - Kanban cards
