@@ -4,28 +4,28 @@ const Group = require('./group.js')
 const Schema = mongoose.Schema;
 
 const Board = new Schema({
-    title: {
+  title: {
+    type: String,
+    required: true
+  },
+  slug: {
+    type: String,
+    index: {
+      unique: true
+    }
+  },
+  tags: [{
+    title: String,
+    color: {
       type: String,
-      required: true
-    },
-	  slug: {
-      type: String,
-      index: {
-        unique: true
-      }
-    },
-    tags: [{
-      title: String,
-      color: {
-        type: String,
-        default: '#ccc'
-      }
-    }],
-    descr: String,
-    image: String,
-    users: [Users],
-    groups: [Group]
- });
+      default: '#ccc'
+    }
+  }],
+  descr: String,
+  image: String,
+  users: [Users],
+  groups: [Group]
+});
 
 Board.methods.findRole = function(userId) {
   let user = this.users.find(u => {

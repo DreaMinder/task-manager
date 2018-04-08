@@ -9,7 +9,7 @@ var transporter = require('nodemailer').createTransport({
 
 module.exports = {
   login: async ctx => {
-    user = await User.findOne({
+    let user = await User.findOne({
       email: ctx.request.body.email
     });
 
@@ -35,28 +35,27 @@ module.exports = {
       ctx.status = 401;
   },
   invite: async ctx => {
-
     const invite = await Invite.create({
       email: ctx.params.email
     })
-	
-	//hardcode your url
-    const link = '/api/auth/register/' + invite._id;
+
+	  const domain = 'https://domain.com'
+    const link = domain + '/api/auth/register/' + invite._id;
 
     const message = [
-      'Здравствуйте.',
-      'Один из пользователей сервиса Task Manager выслал Вам приглашение для регистрации.',
-      'Пожалуйста, пройдите по ссылке чтобы начать регистрацию в Таск Менеджере:',
+      'Hello.',
+      'You have invite to Task Manager. Follow this link to register:',
       '<a href="'+ link +'">'+ link +'</a>'
     ];
 
     ctx.body = {
       success: true
     }
+    
     transporter.sendMail({
       from: 'Task Manager',
       to: ctx.params.email,
-      subject: 'Приглашение',
+      subject: 'Invite',
       html: message.join('<br>')
     }, function(error, info) {
       if (error)
@@ -64,30 +63,24 @@ module.exports = {
     });
   },
   registerForm: async ctx => {
-      const invite = await Invite.findById(ctx.params.invite);
+    const invite = await Invite.findById(ctx.params.invite);
 
-      if(invite)
-        await send(ctx, 'public/register.html')
-      else
-        ctx.status = 401;
-
+    if(invite)
+      await send(ctx, 'public/register.html')
+    else
+      ctx.status = 401;
   },
   register: async ctx => {
-    try{
-      const invite = await Invite.findById(ctx.params.invite);
+    const invite = await Invite.findById(ctx.params.invite);
 
-      if(!invite) throw new Error('No invite in DB');
+    if(!invite) throw new Error('No invite in DB');
 
-      const user = await User.create(ctx.request.body);
+    const user = await User.create(ctx.request.body);
 
-      await Invite.remove({ _id:ctx.params.invite});
+    await Invite.remove({ _id:ctx.params.invite});
 
-      ctx.body = {
-        success: true
-      }
-    } catch(err){
-      console.error(err);
-      ctx.status = 500
+    ctx.body = {
+      success: true
     }
   }
 }

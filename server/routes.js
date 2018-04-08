@@ -1,9 +1,13 @@
-const {image, auth, event, board, card, list, table, note, task, user, tag} = require('./controllers');
+const {
+	image, auth, event,
+	board, card, list, table,
+	note, task, user, tag
+} = require('./controllers');
+
 const jwt = require('koa-jwt');
 const config = require('./config');
 const multer  = require('koa-multer');
-const koaRouter = require('koa-router');
-const router = new koaRouter().prefix('/api');
+const router = new require('koa-router')().prefix('/api');
 
 router.post('/auth/login', auth.login)
 		.post('/auth/invite/:email', auth.invite)

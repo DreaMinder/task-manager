@@ -15,6 +15,6 @@ let Note = new Schema({
 
 Note.add({
   comments: [Note]
-})
+}) //?wut
 
 module.exports = Note;

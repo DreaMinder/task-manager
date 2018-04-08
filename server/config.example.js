@@ -1,4 +1,4 @@
-module.exports = {  
+module.exports = {
     auth: {
 	    secret: "jwtsecret",
   	},
@@ -6,6 +6,6 @@ module.exports = {
         user: '-',
         pass: '-'
     },
-    collection: 'tasks-dev',
+    db: 'tasks-dev',
     port: 3012
 };

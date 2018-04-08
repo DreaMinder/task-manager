@@ -16,7 +16,6 @@ Demo: [demo.module-5.com](http://demo.module-5.com/)
   - Card tags
 
 #### TODO:
-  - Move frontend to Nuxt.js
   - Switch from REST to GraphQL
   - Implement lots of features
   - Switch to serverless
@@ -24,13 +23,13 @@ Demo: [demo.module-5.com](http://demo.module-5.com/)
 
 #### Quick start:
 1. Install MongoDB
-2. Install server deps and start in dev mode
+2. Install server deps and start it in dev mode
 ```sh
 $ cd server
 $ npm i
 $ npm start
 ```
-3. Install client deps and start in dev mode
+3. Install client deps and start it in dev mode
 ```sh
 $ cd client
 $ npm i
