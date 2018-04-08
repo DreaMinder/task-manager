@@ -6,7 +6,7 @@
     "start": "nodemon app.js"
   },
   "dependencies": {
-    "bcrypt": "^2",
+    "bcryptjs": "^2",
     "jwt-simple": "^0.5.1",
     "kcors": "^2.2.1",
     "koa": "^2.5.0",

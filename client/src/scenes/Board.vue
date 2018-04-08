@@ -172,8 +172,6 @@ export default {
 
 <style scoped>
 
-
-
   #board{
     position: absolute;
     top:0;

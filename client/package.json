@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Task Manager Client",
   "author": "DreaMinder <dreaminder7@gmail.com>",
   "scripts": {
@@ -9,14 +9,14 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.0",
     "group-array": "^0.3.3",
     "muse-ui": "^2.1.0",
     "vue": "^2.5.13",
     "vue-i18n": "^7.4.1",
     "vue-material": "^0.7.5",
-    "vue-moment": "^2.2.0",
-    "vue-quill-editor": "^2.3.3",
+    "vue-moment": "^3.2.0",
+    "vue-quill-editor": "^3.0.5",
     "vue-router": "^3.0.1",
     "vue-toasted": "^1.1.24",
     "vuedraggable": "^2.16.0",
