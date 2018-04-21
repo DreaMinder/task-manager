@@ -1,12 +1,12 @@
-# Vue.js Task Manager
+# Nuxt.js Task Manager (Vue, Koa, Mongoose)
 
-Demo: [demo.module-5.com](http://demo.module-5.com/)
+Demo of old vuejs version: [demo.module-5.com](http://demo.module-5.com/)
 
 #### Features:
   - Kanban cards
   - Todo lists inside cards
   - Notes and comments inside cards
-  - Premission control (admin and common users)
+  - Permission control (admin and common users)
   - Task-tables with dates and statuses inside cards
   - Card duplication across boards
   - Move to trash feature
@@ -16,14 +16,14 @@ Demo: [demo.module-5.com](http://demo.module-5.com/)
   - Card tags
 
 #### TODO:
-  - Switch from REST to GraphQL
-  - Implement lots of features
+  - Add seed user
+  - Implement real-time updates
   - Switch to serverless
   - Fix XSS
 
 #### Quick start:
 1. Install MongoDB
-2. Install server deps and start it in dev mode
+2. Install server deps, create config.js and start it in dev mode
 ```sh
 $ cd server
 $ npm i
@@ -46,7 +46,7 @@ A: Yep. Trying to keep it as simple as possible, so any part could be quickly re
 
 A: I expect that people would use it not only to learn but also to implement custom task managers for their own projects. If it would be so, code quality will rise and new features will be implemented.
 
-*Q: Why do this project exsists?*
+*Q: Why do this project exists?*
 
 A: Team of my co-workers have been using trello. It was fine except lack of some specific features. So I implemented this project and now they use it. Also it was my master degree project.
 

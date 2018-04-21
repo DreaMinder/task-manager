@@ -9,16 +9,17 @@ const config = require('./config');
 const multer  = require('koa-multer');
 const router = new require('koa-router')().prefix('/api');
 
-router.post('/auth/login', auth.login)
-		.post('/auth/invite/:email', auth.invite)
-	  .post('/auth/register/:invite', auth.register)
-		.get('/auth/register/:invite', auth.registerForm);
+router.post('/login', auth.login)
+		.post('/invite/:email', auth.invite)
+	  .post('/register/:invite', auth.register)
+		.get('/register/:invite', auth.registerForm);
 
 router.use(jwt({secret: config.auth.secret}))
 
 router.get('/users', user.search)
 	  .get('/account', user.account)
-	  .put('/account', user.put);
+	  .put('/account', user.put)
+		.post('/logout', user.logout);
 
 router.post('/boards', board.post)
 		.get('/boards', board.query)

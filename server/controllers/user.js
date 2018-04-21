@@ -9,9 +9,14 @@ module.exports = {
 		);
 	},
 	account: async ctx => {
-		ctx.body = await User.findById(ctx.state.user._id)
+		let user = await User.findById(ctx.state.user._id)
 		.select('-password')
 		.lean()
+
+		ctx.body = { user }
+	},
+	logout: async ctx => {
+		ctx.status = 401
 	},
 	search: async ctx => {
 		const query = {

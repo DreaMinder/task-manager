@@ -29,6 +29,8 @@ module.exports = {
 		})
 		.populate('users.user', '-password -email')
 
+		if(!board) return ctx.throw(404);
+
 		board.findRole(ctx.state.user._id);
 		board = board.toObject();
 

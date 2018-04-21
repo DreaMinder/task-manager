@@ -31,18 +31,4 @@ const Task = new Schema({
     toJSON: { virtuals: true }
 });
 
-Task.virtual('timeLeft').get(function() {
-    const now = new Date();
-    if(this.timeFinish && now < this.timeFinish)
-        return moment().isoWeekdayCalc(now,this.timeFinish,[1,2,3,4,5]);
-    else return null
-});
-
-Task.virtual('timeLast').get(function() {
-    const now = new Date();
-    if(this.timeStarted)
-        return moment().isoWeekdayCalc(this.start,this.finish || now,[1,2,3,4,5]);
-    else return null
-});
-
 module.exports = mongoose.model('tasks', Task);
