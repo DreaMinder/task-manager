@@ -1,25 +1,22 @@
 <template>
     <mu-text-field
-          v-if="editable"
-          :hintText="placeholder"
-          v-focus="!inline"
-          v-focus-inline="inline"
-          :multiLine="!inline"
-          :max="20"
-          :rowsMax="12"
-          :errorText="errorText"
-          :class="{'white': white}"
-          fullWidth
-          v-model="text"
-          @blur="save"
-          @textOverflow="overflow"
-          @keyup.native.enter="save"
-          @keyup.native.delete="remove" />
-    <div
-        v-else
-        @click="makeEditable"
-    >{{ text }}
-    </div>
+      v-if="editable"
+      :hintText="placeholder"
+      v-focus="!inline"
+      v-focus-inline="inline"
+      :multiLine="!inline"
+      :max="20"
+      :rowsMax="12"
+      :errorText="errorText"
+      :class="{'white': white}"
+      fullWidth
+      v-model="text"
+      @blur="save"
+      @textOverflow="overflow"
+      @keyup.native.enter="save"
+      @keyup.native.delete="remove"
+    />
+    <div v-else click="makeEditable">{{ text }}</div>
 </template>
 
 <script>
@@ -79,16 +76,16 @@ export default {
     },
     focus:  {
       inserted: (el) => {
-      try{
-        el
-        .firstElementChild
-        .firstElementChild
-        .nextElementSibling
-        .firstElementChild
-        .nextElementSibling
-        .focus()
-      } catch(err){}
-      }
+        try{
+          el
+          .firstElementChild
+          .firstElementChild
+          .nextElementSibling
+          .firstElementChild
+          .nextElementSibling
+          .focus()
+        } catch(err){}
+        }
     }
   }
 };
