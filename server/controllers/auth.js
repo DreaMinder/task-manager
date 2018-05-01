@@ -1,10 +1,12 @@
 const jwt = require('jsonwebtoken');
 const send = require('koa-send');
 const { User, Invite } = require('../models')
-const config = require('../config')
 var transporter = require('nodemailer').createTransport({
     service: 'Gmail',
-    auth: config.email
+    auth: {
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASS,
+    }
 });
 
 module.exports = {
@@ -21,7 +23,7 @@ module.exports = {
             if(isMatch){
               ctx.status = 200;
               ctx.body = {
-                token: jwt.sign({ _id: user._id }, config.auth.secret),
+                token: jwt.sign({ _id: user._id }, process.env.SECRET),
               };
               resolve();
             } else
@@ -51,7 +53,7 @@ module.exports = {
     ctx.body = {
       success: true
     }
-    
+
     transporter.sendMail({
       from: 'Task Manager',
       to: ctx.params.email,

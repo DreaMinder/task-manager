@@ -21,6 +21,11 @@ module.exports = {
     baseURL: development ? 'http://localhost:3020/api' : '/api'
   },
   loading: { color: '#fff' },
+  loadingIndicator: {
+    name: 'folding-cube',
+    color: '#fff',
+    background: '#333'
+  },
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth',

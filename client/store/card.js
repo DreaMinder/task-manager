@@ -45,6 +45,10 @@ export const mutations = {
 		let index = state.current.tables.findIndex(t => t._id === table._id);
 		Vue.set(state.current.tables, index, table)
 	},
+	SORT_TABLE (state, data){
+		let table = state.current.tables.find(t => t._id === data._id);
+		table.tasks.splice(data.new, 0, table.tasks.splice(data.old, 1)[0]);
+	},
 	SORT_TABLES (state, params){
 		let indexFrom = state.current.tables.findIndex(t => t._id === params.tableId)
 		let indexTo = null;

@@ -5,26 +5,31 @@
         <text-editable
           :placeholder="$t('List name')"
           class="md-title"
-          :editable="listData.editable"
+          :editable="list.editable"
           @makeEditable="makeEditable"
-          :value="listData.title"
+          :value="list.title"
           :inline="true"
           @save="save"
         />
 
         <mu-icon-menu icon="more_vert" v-if="isAdmin">
-          <mu-menu-item leftIcon="add" :title="$t('New task')" @click="newTask"  />
+          <mu-menu-item leftIcon="add" :title="$t('New task')" @click="newTask" />
           <mu-menu-item leftIcon="edit" :title="$t('Rename')" @click="makeEditable" />
           <mu-menu-item leftIcon="clear" :title="$t('Clear done')" @click="clear" />
           <mu-menu-item leftIcon="delete" :title="$t('Delete')" @click="deleteList" />
         </mu-icon-menu>
       </md-toolbar>
 
+      <md-card-actions v-if="list.tasks.length === 0">
+        <mu-flat-button icon="add" :title="$t('New task')" @click="newTask" />
+      </md-card-actions>
       <draggable
+        v-else
         :list="list.tasks"
         class="dragArea"
         :options="{group:'tasks', disabled: !isAdmin, animation: 300}"
-        @change="save">
+        @change="save"
+      >
           <div
             class="list-task"
             :class="{ done: task.done }"
@@ -73,10 +78,13 @@ export default {
   },
   methods: {
     save({title}) {
+      this.$forceUpdate();
       this.$store.dispatch('card/updateList', {
         _id: this.list._id,
+        tasks: this.list.tasks,
         title
       });
+      this.list.editable = false
     },
     saveTask(task, {title, itemIndex}, forceSave){
       task.editable = false;
@@ -112,10 +120,10 @@ export default {
     },
     clear(){
       this.list.tasks = this.list.tasks.filter(t => !t.done)
-      this.save(null)
+      this.save({})
     },
     deleteList(){
-      this.$store.dispatch('card/deleteList', this.listData._id);
+      this.$store.dispatch('card/deleteList', this.list._id);
     },
     makeEditable(){
       if(this.isAdmin)

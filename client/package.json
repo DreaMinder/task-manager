@@ -8,12 +8,12 @@
     "build": "cross-env NODE_ENV=production nuxt build -a"
   },
   "dependencies": {
-    "@nuxtjs/auth": "^4.1.0",
+    "@nuxtjs/auth": "^4.3.0",
     "@nuxtjs/axios": "^5.3.1",
-    "@nuxtjs/toast": "^3.0.0",
+    "@nuxtjs/toast": "^3.0.1",
     "group-array": "^0.3.3",
     "muse-ui": "^2.1.0",
-    "nuxt-edge": "^2.0.0-25403297.592c715",
+    "nuxt-edge": "^2.0.0-25419351.c5880cc",
     "vue-i18n": "^7.4.2",
     "vue-material": "^0.8.1",
     "vue-moment": "^3.2.0",

@@ -1,14 +1,13 @@
-const mongoose = require('mongoose');
-let config = require('../config');
+let mongoose = require('mongoose');
 
 let connect = async function(){
 	try {
-		await mongoose.connect(`mongodb://localhost/${config.db}`);
+		await mongoose.connect(`mongodb://localhost/${process.env.DB}`);
 
 		if('production' === process.env.NODE_ENV)
 			console.log(`--------- ${(new Date()).toISOString()}`);
 
-		console.log(`--------- DB: ${config.db}, Port: ${config.port}`);
+		console.log(`--------- DB: ${process.env.DB}, Port: ${process.env.PORT}`);
 	} catch(err){
 		console.error(err);
 	}

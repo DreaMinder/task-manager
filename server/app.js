@@ -1,16 +1,16 @@
-const koa = require('koa');
-const cors = require('@koa/cors');
-const logger = require('koa-logger');
-const bodyparser = require('koa-bodyparser');
+let koa = require('koa')
+let logger = require('koa-logger')
+let bodyparser = require('koa-bodyparser')
 
-const config = require('./config');
-const router = require('./routes');
-const init = require('./models')
+let {cors, static} = require('./dev')
+let router = require('./routes')
+let init = require('./models')
 
 new koa()
-	.use(cors({ credentials: true }))
+	.use(cors())
+	.use(static())
 	.use(logger())
 	.use(bodyparser({jsonLimit: '3mb'}))
 	.use(router.routes())
 	.use(router.allowedMethods())
-	.listen(config.port);
+	.listen(process.env.PORT)

@@ -248,10 +248,6 @@
 </template>
 
 <script>
-Array.prototype.move = function(from, to) {
-    this.splice(to, 0, this.splice(from, 1)[0]);
-};
-
 import draggable from 'vuedraggable';
 import groupBy from 'group-array';
 import textEditable from './ui/text-editable';
@@ -260,7 +256,6 @@ import tableStats from './table-stats';
 import tableRow from './table-row';
 
 export default {
-  name: 'table',
   components: {
     textEditable,
     tableStats,
@@ -318,7 +313,7 @@ export default {
         return (title && title.length > 54)? '100' : '66'
       },
       isVisible(task){
-        return task.title.toLowerCase().match((this.query || '').toLowerCase()) &&
+        return task.title.toLowerCase().match((this.query || '').toLowerCase()) && //Error?
         !(this.hideDone && (task.status === 'done' || task.status === 'not_done'))
       },
       onSort (sort) {
@@ -333,8 +328,8 @@ export default {
             this.task.finish = new Date();
         })
       },
-      move(evt) {
-        this.tableData.tasks.move(evt.oldIndex, evt.newIndex);
+      move(e) {
+        this.$store.commit('card/SORT_TABLE', {_id: this.tableData._id, old: e.oldIndex, new: e.newIndex});
         this.$store.dispatch('card/updateTable', this.tableData);
       },
       save({title}) {

@@ -92,76 +92,14 @@ a:focus {
   box-shadow: inset 2px 2px 12px 0px rgba(0, 0, 0, .4);
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition-property: opacity;
-  transition-duration: .2s;
-  overflow: hidden;
-}
-
-.fade-enter-active {
-  transition-delay: 0;
-}
-
-.fade-enter,
-.fade-leave-active {
-  opacity: 0;
-}
-
 .page-enter-active,
 .page-leave-active {
-  transition: opacity .2s
+  transition: opacity .1s
 }
 
 .page-enter,
 .page-leave-active {
   opacity: 0
-}
-
-.slide-left-enter,
-.slide-right-leave-active {
-  opacity: 0;
-  transform: translate(30px, 0);
-}
-
-.slide-left-leave-active,
-.slide-right-enter {
-  opacity: 0;
-  transform: translate(-30px, 0);
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity .3s
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0
-}
-
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-
-.slide-fade-leave-active {
-  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-
-.slide-fade-enter,
-.slide-fade-leave-to {
-  transform: translateY(-30px);
-  opacity: 0;
-}
-
-.list-complete-enter,
-.list-complete-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.list-complete-leave-active {
-  position: absolute;
 }
 
 .mu-dialog {

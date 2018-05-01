@@ -207,7 +207,6 @@ export default {
 
 <style scoped>
   #nav{
-    /* position: fixed; */
     position: absolute;
     top:0;
     width: 100%;
@@ -215,13 +214,9 @@ export default {
     padding-right: 20px;
     display: flex;
     z-index: 100;
-    background: rgba(0,0,0,0);
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0) 100%);
     -webkit-backface-visibility: hidden;
     -webkit-transform: translate3d(0, 0, 0);
-    transition: background-color 400ms linear;
-  }
-  #nav.scrolled{
-    background: rgba(0,0,0,.4);
   }
 
   .breadcrumbs{

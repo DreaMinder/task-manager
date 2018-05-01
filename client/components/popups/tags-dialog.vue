@@ -129,7 +129,7 @@ export default {
       noChanges: true,
       colors: ['#d82c24','#1f6cdf','#ff9b00','#4f8a2a','#9b9b9b'],
       title: null,
-      color: null,
+      color: '#999',
       chosenTags: this.cardTags
     }
   },
@@ -171,7 +171,7 @@ export default {
       }).then(()=>{
         this.newTag = false
         this.title = null
-        this.color = null
+        this.color = '#999'
 
         if(this.cardId)
           this.$store.dispatch('card/get',this.cardId);

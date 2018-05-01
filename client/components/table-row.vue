@@ -5,10 +5,10 @@
     </md-table-cell>
 
     <md-table-cell md-numeric>
-      <md-button class="md-clean" v-if="task.timeLast">
-        {{task.timeLast}}
-        <md-tooltip md-direction="top" v-if="task.timeLeft && task.status != 'done'">
-          {{$t('{left} work days to deadline',{left: task.timeLeft})}}
+      <md-button class="md-clean" v-if="timeLast">
+        {{timeLast}}
+        <md-tooltip md-direction="top" v-if="timeLeft && task.status != 'done'">
+          {{$t('{left} work days to deadline',{left: timeLeft})}}
         </md-tooltip>
       </md-button>
     </md-table-cell>
@@ -61,8 +61,8 @@
 
     <md-table-cell class="menu">
       <mu-icon-menu icon="more_vert" v-if="isAdmin">
-        <mu-menu-item leftIcon="edit" :title="$t('Edit')" @click="editTask(task)" />
-        <mu-menu-item leftIcon="delete" :title="$t('Delete')" @click="deleteTask(task._id)" />
+        <mu-menu-item leftIcon="edit" :title="$t('Edit')" @click="$emit('edit', task)" />
+        <mu-menu-item leftIcon="delete" :title="$t('Delete')" @click="$emit('delete', task._id)" />
       </mu-icon-menu>
     </md-table-cell>
   </md-table-row>
@@ -82,7 +82,20 @@ export default {
   props: ['task','statuses','grouped','tableId', 'isAdmin'],
   data(){
     return {
-      editable: false
+      editable: false,
+      now: this.$moment()
+    }
+  },
+  computed: {
+    timeLast(){
+      if(this.task.start)
+         return -this.$moment(this.task.start).diff(this.task.finish || this.now, 'days');
+      else return null
+    },
+    timeLeft(){
+      if(this.task.finish && this.now.isBefore(this.task.finish))
+          return -this.now.diff(this.task.finish, 'days')
+      else return null
     }
   },
   methods: {
@@ -96,41 +109,22 @@ export default {
     overdue(status, finish){
       return (status === 'working' && finish && new Date(finish) < new Date())? 'overdue' : ''
     },
-    saveDescr(task, {title}){
-      if(task.descr === title) {
-        this.editable = false
-        return false;
-      }
-      task.descr = title;
-      this.$store.dispatch('updateTask', {
+    async saveDescr(task, {title}){
+      if(task.descr === title)
+        return this.editable = false
+
+      await this.$store.dispatch('card/updateTask', {
         tableId: this.tableId,
-        task
-      }).then(()=>{
-          this.editable = false
-      });
-    },
-    deleteTask(id) {
-      this.$emit('delete', id)
-    },
-    editTask(task){
-      this.$emit('edit', task)
-    },
+        task: {
+          _id: task._id,
+          descr: title
+        }
+      })
+
+      this.editable = false
+    }
   }
 };
-//
-// Task.virtual('timeLeft').get(function() {
-//     const now = new Date();
-//     if(this.timeFinish && now < this.timeFinish)
-//         return moment().isoWeekdayCalc(now,this.timeFinish,[1,2,3,4,5]);
-//     else return null
-// });
-//
-// Task.virtual('timeLast').get(function() {
-//     const now = new Date();
-//     if(this.timeStarted)
-//         return moment().isoWeekdayCalc(this.start,this.finish || now,[1,2,3,4,5]);
-//     else return null
-// });
 </script>
 
 <style scope>

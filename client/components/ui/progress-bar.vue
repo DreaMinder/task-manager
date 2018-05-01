@@ -1,7 +1,6 @@
 <template>
-  <div class="progress-bar"  v-if="loading">
   <transition name="ui-progress-linear--transition-fade">
-    <div class="ui-progress-linear ui-progress-linear--type-indeterminate">
+    <div class="ui-progress-linear ui-progress-linear--type-indeterminate" v-if="loading">
       <div
         class="ui-progress-linear__progress-bar"
         role="progressbar"
@@ -10,7 +9,6 @@
       />
     </div>
   </transition>
-</div>
 </template>
 
 <script>

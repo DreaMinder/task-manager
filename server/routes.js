@@ -5,7 +5,6 @@ const {
 } = require('./controllers');
 
 const jwt = require('koa-jwt');
-const config = require('./config');
 const multer  = require('koa-multer');
 const router = new require('koa-router')().prefix('/api');
 
@@ -14,7 +13,7 @@ router.post('/login', auth.login)
 	  .post('/register/:invite', auth.register)
 		.get('/register/:invite', auth.registerForm);
 
-router.use(jwt({secret: config.auth.secret}))
+router.use(jwt({secret: process.env.SECRET}))
 
 router.get('/users', user.search)
 	  .get('/account', user.account)

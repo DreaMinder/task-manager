@@ -19,5 +19,8 @@
     "koa-static": "^4.0.2",
     "mongoose": "^5.0.13",
     "nodemailer": "^4.6.3"
+  },
+  "devDependencies": {
+    "dotenv": "^5.0.1"
   }
 }
