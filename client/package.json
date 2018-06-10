@@ -10,6 +10,7 @@
   "dependencies": {
     "@nuxtjs/auth": "^4.3.0",
     "@nuxtjs/axios": "^5.3.1",
+    "@nuxtjs/pwa": "^2.0.8",
     "@nuxtjs/toast": "^3.0.1",
     "group-array": "^0.3.3",
     "muse-ui": "^2.1.0",

@@ -5,3 +5,4 @@ config.js
 dist/
 npm-debug.log*
 public/
+sw.*
