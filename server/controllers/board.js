@@ -47,13 +47,12 @@ module.exports = {
 		} else {
 			board.groups.forEach(group => {
 				group.cards = group.cards.map(c => {
-						if(c.users.findIndex(u =>
-							u.user._id.toString() === ctx.state.user._id.toString()
-						) === -1)
-							c.disabled = true;
-						return c
-					}
-				)
+					if(c.users.findIndex(u =>
+						u.user._id.toString() === ctx.state.user._id.toString()
+					) === -1)
+						c.disabled = true;
+					return c
+				})
 			})
 		}
 
@@ -143,23 +142,5 @@ module.exports = {
 			throw new Error('Board is not empty')
 		else
 			ctx.body = await Board.remove({_id: ctx.params.id})
-	},
-	// old: async ctx => {
-	// 	delete ctx.request.body._id;
-	// 	delete ctx.request.body.slug;
-	//
-	// 	let board = await Board.findOneAndUpdate({
-	// 						slug: ctx.params.slug
-	// 					}, ctx.request.body, {new: true})
-	// 	.populate({
-	// 		path: 'groups.cards',
-	// 		model: 'cards',
-	// 		select: '-users'
-	// 	})
-	// 	.populate('users.user', '-password -email')
-	//
-	// 	board.findRole(ctx.state.user._id);
-	//
-	// 	ctx.body = board;
-	// },
+	}
 };

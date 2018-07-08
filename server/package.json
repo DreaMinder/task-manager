@@ -6,7 +6,6 @@
     "start": "nodemon app.js"
   },
   "dependencies": {
-    "@koa/cors": "^2.2.1",
     "bcryptjs": "^2",
     "jwt-simple": "^0.5.1",
     "koa": "^2.5.0",
@@ -16,11 +15,12 @@
     "koa-logger": "^3.2.0",
     "koa-multer": "^1.0.2",
     "koa-router": "^7.4.0",
-    "koa-static": "^4.0.2",
     "mongoose": "^5.0.13",
     "nodemailer": "^4.6.3"
   },
   "devDependencies": {
+    "@koa/cors": "^2.2.1",
+    "koa-static": "^4.0.2",
     "dotenv": "^5.0.1"
   }
 }

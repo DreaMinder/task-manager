@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Users = require('./users.js')
-const Group = require('./group.js')
+const Groups = require('./groups.js')
 const Schema = mongoose.Schema;
 
 const Board = new Schema({
@@ -24,7 +24,7 @@ const Board = new Schema({
   descr: String,
   image: String,
   users: [Users],
-  groups: [Group]
+  groups: [Groups]
 });
 
 Board.methods.findRole = function(userId) {

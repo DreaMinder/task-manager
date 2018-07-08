@@ -1,5 +1,6 @@
 let development = process.env.NODE_ENV !== 'production';
 let skip = async function(ctx, next){ await next() };
+
 if(development) require('dotenv').load();
 
 module.exports = {

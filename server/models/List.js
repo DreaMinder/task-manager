@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const List = new Schema({
-    title: String,
-    card: {
-        type: Schema.Types.ObjectId,
-        ref: 'cards'
-    },
-    tasks: [{
-    	title: String,
-    	done: Boolean
-    }]
+  title: String,
+  card: {
+    type: Schema.Types.ObjectId,
+    ref: 'cards'
+  },
+  tasks: [{
+  	title: String,
+  	done: Boolean
+  }]
  });
 
  List.pre('findOneAndUpdate', function(next) {

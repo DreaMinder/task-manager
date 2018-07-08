@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
 const send = require('koa-send');
-const { User, Invite } = require('../models')
-var transporter = require('nodemailer').createTransport({
-    service: 'Gmail',
-    auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
-    }
+const { User, Invite } = require('../models');
+const transporter = require('nodemailer').createTransport({
+  service: 'Gmail',
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS,
+  }
 });
 
 module.exports = {
@@ -15,26 +15,24 @@ module.exports = {
       email: ctx.request.body.email
     });
 
-    if(user)
-		  try{
-         await new Promise((resolve, reject) => {
-          user.comparePassword(ctx.request.body.password, function(err, isMatch) {
-            if (err) throw err;
-            if(isMatch){
-              ctx.status = 200;
-              ctx.body = {
-                token: jwt.sign({ _id: user._id }, process.env.SECRET),
-              };
-              resolve();
-            } else
-              reject()
-          });
-        })
-		 } catch (err) {
-			 ctx.status = 401
-		 }
-   else
-      ctx.status = 401;
+    try{
+      if(!user) throw new Error('no such user');
+
+      await new Promise((resolve, reject) => {
+        user.comparePassword(ctx.request.body.password, function(err, isMatch) {
+          if (err) throw err;
+          if(isMatch){
+            ctx.status = 200;
+            ctx.body = {
+              token: jwt.sign({ _id: user._id }, process.env.SECRET),
+            };
+            resolve();
+          } else reject()
+        });
+      })
+	  } catch (err) {
+		  ctx.status = 401
+	  }
   },
   invite: async ctx => {
     const invite = await Invite.create({
@@ -60,8 +58,7 @@ module.exports = {
       subject: 'Invite',
       html: message.join('<br>')
     }, function(error, info) {
-      if (error)
-       console.log(error);
+      if(error) console.log(error);
     });
   },
   registerForm: async ctx => {

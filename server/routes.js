@@ -23,9 +23,9 @@ router.get('/users', user.search)
 router.post('/boards', board.post)
 		.get('/boards', board.query)
 	  .get('/boards/:slug', board.get)
+		.get('/boards/:id/trash', board.trash)
 		.patch('/boards/:id', board.patch)
 	  .delete('/boards/:id', board.delete)
-		.get('/boards/:id/trash', board.trash)
 		.patch('/boards/:id/leave', board.leave);
 
 router.get('/cards', card.search)
