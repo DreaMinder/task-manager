@@ -79,9 +79,9 @@
         <mu-list-item :title="$t('Settings')" @click="toSettings">
           <mu-icon slot="left" value="settings"/>
         </mu-list-item>
-        <mu-list-item :title="$t('Invite')" @click="openInvite = true">
+        <!-- <mu-list-item :title="$t('Invite')" @click="openInvite = true">
           <mu-icon slot="left" value="share"/>
-        </mu-list-item>
+        </mu-list-item> -->
         <mu-list-item :title="$t('Logout')" @click="logOut">
           <mu-icon slot="left" value="exit_to_app"/>
         </mu-list-item>
