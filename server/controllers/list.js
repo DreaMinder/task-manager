@@ -31,20 +31,5 @@ module.exports = {
 			card: list.card,
 			title: list.title
 		})
-	},
-	// experimental: async ctx => { //?TODO
-	// 	let list = await List.findById(ctx.params.listId);
-	//
-	// 	Object.assign(list, ctx.request.body);
-	// 	list = await list.save();
-	//
-	// 	ctx.body = list;
-	//
-	// 	Event.create({
-	// 		user: ctx.state.user._id,
-	// 		action: (list.__v === 1)? 'new_list' : 'edit_list',
-	// 		card: list.card,
-	// 		title: list.title
-	// 	})
-	// }
+	}
 };

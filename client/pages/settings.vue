@@ -99,7 +99,7 @@ export default {
       this.imgLoading = true;
       var data = new FormData();
       data.append('image', event[0]);
-      let result = await request.put('/images/avatar', data);
+      let result = await this.$axios.post('/images/avatar', data);
       this.user.avatar = result.data.name;
       this.imgLoading = false;
     },

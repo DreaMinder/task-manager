@@ -5,7 +5,6 @@ const {
 } = require('./controllers');
 
 const jwt = require('koa-jwt');
-const multer  = require('koa-multer');
 const router = new require('koa-router')().prefix('/api');
 
 router.post('/login', auth.login)
@@ -18,7 +17,8 @@ router.use(jwt({secret: process.env.SECRET}))
 router.get('/users', user.search)
 	  .get('/account', user.account)
 	  .put('/account', user.put)
-		.post('/logout', user.logout);
+		.post('/logout', user.logout)
+		.post('/images/avatar', image.upload, image.return, image.crop(40, 40));
 
 router.post('/boards', board.post)
 		.get('/boards', board.query)
@@ -26,7 +26,8 @@ router.post('/boards', board.post)
 		.get('/boards/:id/trash', board.trash)
 		.patch('/boards/:id', board.patch)
 	  .delete('/boards/:id', board.delete)
-		.patch('/boards/:id/leave', board.leave);
+		.patch('/boards/:id/leave', board.leave)
+		.post('/images/board', image.upload, image.return, image.crop(1800,1000));
 
 router.get('/cards', card.search)
 	  .get('/cards/:cardId', card.get)
@@ -47,8 +48,5 @@ router.post('/tasks/:tableId', task.post)
 	  .patch('/tasks/:taskId', task.patch);
 
 router.get('/events/card/:id', event.card)
-
-router.put('/images/board', multer({ dest: 'public/uploads/board' }).single('image'), image.returnName)
-	  .put('/images/avatar', multer({ dest: 'public/uploads/avatar' }).single('image'), image.returnName);
 
 module.exports = router;

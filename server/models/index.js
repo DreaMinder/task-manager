@@ -4,9 +4,6 @@ let connect = async function(){
 	try {
 		await mongoose.connect(`mongodb://localhost/${process.env.DB}`);
 
-		if('production' === process.env.NODE_ENV)
-			console.log(`--------- ${(new Date()).toISOString()}`);
-
 		console.log(`--------- DB: ${process.env.DB}, Port: ${process.env.PORT}`);
 	} catch(err){
 		console.error(err);

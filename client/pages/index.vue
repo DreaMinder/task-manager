@@ -124,15 +124,15 @@ export default {
       var data = new FormData();
       data.append('image', event[0]);
 
-      let result = await request.put('/images/board', data);
+      let result = await this.$axios.post('/images/board', data);
       this.board.image = result.data.name;
       this.imgLoading = false;
     },
     deleteBoard (){
       if (confirm(this.$t('Are you sure?')))
-          this.$store.dispatch('board/deleteBoard', this.board._id).then(()=>{
-            this.openModal = false;
-          });
+        this.$store.dispatch('board/deleteBoard', this.board._id).then(()=>{
+          this.openModal = false;
+        });
     }
  },
 }

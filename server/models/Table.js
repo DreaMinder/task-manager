@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ObjectId = Schema.Types.ObjectId;
 
 const Table = new Schema({
   title: String,
   card: {
-    type: ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'cards'
   },
   tasks: [{
-    type: ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'tasks'
   }]
 });

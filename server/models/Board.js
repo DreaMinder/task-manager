@@ -32,7 +32,7 @@ Board.methods.findRole = function(userId) {
     if(u.user)
       return (u.user._id || u.user).toString() === userId.toString();
   })
-  if (user)
+  if(user)
     this.set('userRole', user.role, { strict: false });
   else
     throw new Error('Forbidden')
