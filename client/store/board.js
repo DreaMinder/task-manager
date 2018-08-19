@@ -81,7 +81,7 @@ export const actions = {
 		commit('SET_BOARD', board.data);
     commit('SET_BG', board.data.image, {root: true});
 	},
-	async update ({commit}, board) {
+	async updateBoard ({commit}, board) {
 		let updated = await this.$axios.patch('/boards/' + board._id, board);
 		commit('SET_BOARD', updated.data);
 	},
@@ -92,14 +92,14 @@ export const actions = {
 	},
   renameGroup: ({commit, state, dispatch}, group) => {
     commit('RENAME_GROUP', group);
-    dispatch('update', {
+    dispatch('updateBoard', {
       _id: state.current._id,
       groups: state.current.groups
     })
   },
 	deleteGroup({commit, state, dispatch}, group) {
 		commit('DELETE_GROUP', group);
-    dispatch('update', {
+    dispatch('updateBoard', {
       _id: state.current._id,
       groups: state.current.groups
     })
@@ -113,7 +113,7 @@ export const actions = {
     params.editable = false;
     commit('ADD_CARD', params);
 
-    dispatch('update', {
+    dispatch('updateBoard', {
       _id: params.boardId,
       groups: state.current.groups
     })

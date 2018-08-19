@@ -24,11 +24,11 @@
     </md-table-cell>
 
     <md-table-cell>
-      <span v-if="task.start">{{task.start | moment('dddd, DD MMMM YYYY')}}</span>
+      <span v-if="task.start">{{task.start | moment('dddd, DD MMMM YYYY', $moment)}}</span>
     </md-table-cell>
 
     <md-table-cell>
-      <span v-if="task.finish">{{task.finish | moment('dddd, DD MMMM')}}</span>
+      <span v-if="task.finish">{{task.finish | moment('dddd, DD MMMM', $moment)}}</span>
     </md-table-cell>
 
     <md-table-cell v-if="!grouped">

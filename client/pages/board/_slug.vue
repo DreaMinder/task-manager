@@ -13,24 +13,24 @@
     </section>
 
     <VuePerfectScrollbar class="scroll-area" :settings="settings">
-    <draggable
-      class="draggable"
-      ref="draggable"
-      v-model="groups"
-      :options="{disabled: !isAdmin, animation: 300}" >
-      <group v-for="group in groups"
-        :cards="group.cards"
-        :title="group.title"
-        :key="group._id || group.id"
-        :_id="group._id"
-        :editable="group.editable"
-        :admin="isAdmin"
-        :boardId="board._id"
-        :filter="filterTag"
-        @move="moveCard"
-        @insertCard="openInsertForm"
-      />
-    </draggable>
+      <draggable
+        class="draggable"
+        ref="draggable"
+        v-model="groups"
+        :options="{disabled: !isAdmin, animation: 300}" >
+        <group v-for="group in groups"
+          :cards="group.cards"
+          :title="group.title"
+          :key="group._id || group.id"
+          :_id="group._id"
+          :editable="group.editable"
+          :admin="isAdmin"
+          :boardId="board._id"
+          :filter="filterTag"
+          @move="moveCard"
+          @insertCard="openInsertForm"
+        />
+      </draggable>
     </VuePerfectScrollbar>
 
     <transition name="fade" v-if="movingStatus !== 'started'">
@@ -89,7 +89,7 @@ export default {
     moveCard(status) {
       this.movingStatus = status;
       if (status === 'ended')
-        this.$store.dispatch('board/update', {
+        this.$store.dispatch('board/updateBoard', {
           _id: this.board._id,
           groups: this.groups
         })
@@ -141,7 +141,7 @@ export default {
       },
       set(groups) {
         this.$store.commit('board/SET_GROUPS', groups);
-        this.$store.dispatch('board/update', {
+        this.$store.dispatch('board/updateBoard', {
           _id: this.board._id,
           groups
         })

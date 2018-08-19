@@ -7,7 +7,7 @@
     </md-toolbar>
     <mu-timeline class="timeline">
      <mu-timeline-item v-for="event in events" :key="event._id" v-if="cardId">
-       <span slot="time">{{event.date | moment('LLL')}}</span>
+       <span slot="time">{{event.date | moment('LLL', $moment)}}</span>
        <mu-icon value="edit" slot="icon" v-if="event.action.includes('edit')" />
        <mu-icon value="add" slot="icon" v-if="event.action.includes('new')" />
        <span slot="des">

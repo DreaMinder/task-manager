@@ -30,6 +30,7 @@ module.exports = {
   plugins: [
    '@/plugins/material.js',
    '@/plugins/muse-ui.js',
+   '@/plugins/moment.js',
    '@/plugins/i18n.js'
   ],
   proxy: process.env.NODE_ENV !== 'production' && [

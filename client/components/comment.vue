@@ -6,7 +6,7 @@
     <md-card-header-text v-if="comment.user">
       <avatar  class="md-avatar" :user="comment.user" />
       <div class="md-title">{{comment.user.firstName}} {{comment.user.lastName}}</div>
-      <div class="md-subhead">{{comment.date | moment('DD MMMM, HH:mm')}}</div>
+      <div class="md-subhead">{{comment.date | moment('DD MMMM, HH:mm', $moment)}}</div>
     </md-card-header-text>
     <mu-raised-button primary :label="$t('Save')" v-if="comment.editable" @click.native="saveEditable" />
     <mu-icon-menu

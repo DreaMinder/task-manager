@@ -134,8 +134,14 @@ export default {
     align-items: center;
     padding-bottom: 5px
   }
+
   .more-button{
+    opacity: 0;
+    transition: opacity ease .2s;
     margin-right: -10px
+  }
+  .group:hover .more-button{
+    opacity: 1
   }
  .dragArea, .dragArea span{
     display: block;

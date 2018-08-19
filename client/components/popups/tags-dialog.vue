@@ -165,7 +165,7 @@ export default {
         title: this.title,
         color: this.color
       })
-      this.$store.dispatch('board/update',{
+      this.$store.dispatch('board/updateBoard',{
         _id: this.boardId || this.$store.getters.card.board._id,
         tags
       }).then(()=>{
@@ -189,7 +189,7 @@ export default {
           tags: this.chosenTags
         }).then(callback)
       else
-        this.$store.dispatch('board/update',{
+        this.$store.dispatch('board/updateBoard',{
           _id: this.boardId,
           tags: this.tags
         }).then(callback)

@@ -4,7 +4,8 @@
       <md-toolbar>
         <h1 class="md-title">{{$t('Board trash')}}</h1>
       </md-toolbar>
-      <md-table-alternate-header :md-selected-label="$t('selected')">
+
+      <md-table-alternate-header :md-selected-label="$t('selected')" v-if="cards.length">
         <md-button class="md-icon-button" @click="deleteCards">
           <md-icon>delete</md-icon>
           <md-tooltip>{{$t('Delete')}}</md-tooltip>
@@ -16,7 +17,7 @@
         </md-button>
       </md-table-alternate-header>
 
-       <md-table @select="onSelect">
+       <md-table @select="onSelect" v-if="cards.length">
           <md-table-body>
             <md-table-row
               v-for="card in cards"
@@ -60,13 +61,14 @@ export default {
       }
     },
     async recoverCards(){
-      await this.$store.dispatch('board/addGroup', {
+      this.$store.commit('board/ADD_GROUP',  {
         title: this.$t('Recovered cards'),
         id: 0,
         editable: false,
         cards: this.selected
       });
-      await this.$store.dispatch('board/update',{
+
+      await this.$store.dispatch('board/updateBoard',{
         _id: this.boardId,
         groups: this.groups
       });
@@ -84,7 +86,7 @@ export default {
   },
   computed:{
     groups(){
-      return this.$store.getters.board.groups
+      return this.$store.getters['board/board'].groups
     }
   }
 };

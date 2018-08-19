@@ -7,7 +7,7 @@
           class="md-title"
           :editable="tableData.editable"
           :inline="true"
-          @makeEditable="(isAdmin)? tableData.editable = true : false; $forceUpdate()"
+          @makeEditable="isAdmin ? tableData.editable = true : false; $forceUpdate()"
           :value="tableData.title"
           @save="save"
         />
@@ -333,8 +333,6 @@ export default {
         this.$store.dispatch('card/updateTable', this.tableData);
       },
       save({title}) {
-        this.tableData.editable = false;
-        this.$forceUpdate();
         if(title && this.tableData.title === title) return false;
 
         this.$store.dispatch('card/updateTable', {
@@ -362,7 +360,7 @@ export default {
         let task = this.task;
 
         if(task.title == '')
-          return this.$store.dispatch('handleError', new Error(this.$t('Enter name')))
+          return this.$toast.error(this.$t('Enter name'))
 
         let callback = () => {
           this.openModal = false

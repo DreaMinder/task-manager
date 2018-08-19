@@ -208,10 +208,9 @@ export default {
     addUser(){
       let users = JSON.parse(JSON.stringify(this.users))
       let index = users.findIndex(u => u.user._id === this.selectedUser)
-      if(index > -1) {
-        this.$store.dispatch('handleError',new Error(this.$t('User already exists')))
-        return
-      }
+      if(index > -1) 
+        return this.$toast.error(this.$t('User already exists'))
+
       users.push({
          user: this.selectedUser,
          role: 'common'

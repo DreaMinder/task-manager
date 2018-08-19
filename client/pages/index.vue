@@ -93,6 +93,12 @@ export default {
         return
       }
 
+      let clear = () => {
+        this.openModal = false;
+        this.clearForm()
+        this.$store.dispatch('board/getBoards')
+      }
+
       if(this.board._id)
         this.$store.dispatch('board/updateBoard', {
           _id: this.board._id,
@@ -100,23 +106,19 @@ export default {
           slug: this.board.slug,
           descr: this.board.descr,
           image: this.board.image
-        }).then(()=>{
-          this.openModal = false;
-          this.clearForm()
-        });
+        }).then(clear);
       else
         this.$store.dispatch('board/addBoard',{
           title: this.board.title,
           slug: this.board.slug,
           descr: this.board.descr,
           image: this.board.image
-        }).then(()=>{
-          this.openModal = false;
-          this.clearForm()
-        });
+        }).then(clear);
     },
     editBoard(board){
-      this.board = board;
+      this.board = {
+        ...board
+      }
       this.openModal = true;
     },
     async onFileUpload (event) {

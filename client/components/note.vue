@@ -5,7 +5,7 @@
           <md-card-header-text>
               <avatar class="md-avatar" :user="note.user" />
               <div class="md-title">{{note.user.firstName}} {{note.user.lastName}}</div>
-              <div class="md-subhead">{{note.date | moment('dddd, DD MMMM YYYY, HH:mm')}}</div>
+              <div class="md-subhead">{{note.date | moment('dddd, DD MMMM YYYY, HH:mm', $moment)}}</div>
           </md-card-header-text>
           <div class="note-ctrls" v-if="note.user._id === user || isAdmin">
             <mu-raised-button primary :label="$t('Save')" v-if="note.editable" @click.native="saveEditable" />
@@ -78,7 +78,6 @@ export default {
       this.$store.dispatch('startEdit')
     },
     saveEditable() {
-      this.note.editable = false;
       this.$forceUpdate();
 
       this.$store.dispatch('card/updateNote', {

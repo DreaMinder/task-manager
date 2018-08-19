@@ -138,9 +138,9 @@ module.exports = {
 		if(board.toObject().userRole !== 'admin')
 			throw new Error('Denied');
 
-		if(board.groups.length !== 0)
-			throw new Error('Board is not empty')
-		else
+		// if(board.groups.length !== 0)
+		// 	throw new Error('Board is not empty')
+		// else
 			ctx.body = await Board.remove({_id: ctx.params.id})
 	}
 };
