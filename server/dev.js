@@ -4,9 +4,22 @@ let skip = async function(ctx, next){ await next() };
 if(development) require('dotenv').load();
 
 module.exports = {
- cors: () => {
+ seeds: () => {
    if(development)
-     return require('@koa/cors')({maxAge:10000,credentials:true})
+     return async function(ctx, next){
+       let { User } = require('./models')
+       let admin = await User.findOne({firstName: 'Admin'}).lean()
+       if(!admin){
+         let user = await User.create({
+           firstName: 'Admin',
+           lastName: 'Test',
+           email: 'test@test.com',
+           password: 'test'
+         })
+         console.log('Seed user created: ' + user);
+       }
+       await next()
+     }
    else
      return skip
  },
