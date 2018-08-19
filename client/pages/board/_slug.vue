@@ -12,6 +12,7 @@
       />
     </section>
 
+    <VuePerfectScrollbar class="scroll-area" :settings="settings">
     <draggable
       class="draggable"
       ref="draggable"
@@ -30,6 +31,7 @@
         @insertCard="openInsertForm"
       />
     </draggable>
+    </VuePerfectScrollbar>
 
     <transition name="fade" v-if="movingStatus !== 'started'">
       <mu-float-button
@@ -61,6 +63,8 @@
 <script>
 import { mapGetters } from 'vuex';
 import draggable from 'vuedraggable';
+import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+
 import group from '@/components/group';
 import trash from '@/components/trash';
 import cardInsert from '@/components/popups/card-insert'
@@ -70,7 +74,8 @@ export default {
     group,
     trash,
     draggable,
-    cardInsert
+    cardInsert,
+    VuePerfectScrollbar
   },
   head(){
     return {
@@ -122,7 +127,11 @@ export default {
       filterTag: null,
       insertToGroup: null,
       openCardModal: false,
-      movingStatus: 'ended'
+      movingStatus: 'ended',
+      settings: {
+        useBothWheelAxes: true,
+        maxScrollbarLength: 60
+      }
     }
   },
   computed: {
@@ -169,7 +178,7 @@ export default {
     width:100%;
   }
 
-  .draggable {
+  .scroll-area {
     padding:50px 30px 30px;
     color:#fff;
     overflow: auto;
@@ -181,24 +190,15 @@ export default {
   }
 
   @media (max-width: 800px){
-    .draggable{
+    .scroll-area{
       padding:40px 10px 20px;
     }
   }
 
   @media (min-width: 2100px){
-    .draggable{
+    .scroll-area{
       padding:70px 50px 30px;
     }
-  }
-  #board > draggable{
-    padding:80px 30px 60px;
-    color:#fff;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    overflow:auto;
-    transition: all .3s;
   }
 
   .tags > .mu-icon-button.active,
