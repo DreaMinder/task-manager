@@ -32,8 +32,8 @@
 export default {
   data() {
     return {
-      email: '',
-      password: '',
+      email: 'test@test.com',
+      password: 'test',
     };
   },
   head(){
