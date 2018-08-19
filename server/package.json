@@ -10,7 +10,6 @@
     "jwt-simple": "^0.5.1",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
-    "koa-error": "^3.1.1",
     "koa-jwt": "^3.3.1",
     "koa-logger": "^3.2.0",
     "koa-multer": "^1.0.2",
@@ -19,8 +18,7 @@
     "nodemailer": "^4.6.3"
   },
   "devDependencies": {
-    "@koa/cors": "^2.2.1",
-    "koa-static": "^4.0.2",
-    "dotenv": "^5.0.1"
+    "dotenv": "^6.0.0",
+    "koa-static": "^5.0.0"
   }
 }

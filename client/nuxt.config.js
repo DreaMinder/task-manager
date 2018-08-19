@@ -1,5 +1,3 @@
-const development = process.env.NODE_ENV !== 'production'
-
 module.exports = {
   mode: 'spa',
   head: {
@@ -11,7 +9,8 @@ module.exports = {
     ]
   },
   axios: {
-    baseURL: development ? 'http://localhost:3020/api' : '/api'
+    prefix: '/api',
+    proxy: process.env.NODE_ENV !== 'production'
   },
   loading: { color: '#fff' },
   loadingIndicator: {
@@ -21,18 +20,24 @@ module.exports = {
   },
   manifest: { theme_color: '#02675d' },
   modules: [
+    ['@nuxtjs/moment', ['ru']],
     '@nuxtjs/axios',
     '@nuxtjs/toast',
+    '@nuxtjs/proxy',
     '@nuxtjs/auth',
     '@nuxtjs/pwa'
   ],
-  build: { extractCSS: true },
   plugins: [
    '@/plugins/material.js',
    '@/plugins/muse-ui.js',
-   '@/plugins/moment.js',
    '@/plugins/i18n.js'
   ],
+  proxy: process.env.NODE_ENV !== 'production' && [
+    'http://localhost:3020/uploads',
+    'http://localhost:3020/api'
+  ],
+  router: { middleware: ['auth'] },
+  build: { extractCSS: true },
   toast: { duration: 4000 },
   auth: {
     resetOnError: true,
@@ -45,6 +50,5 @@ module.exports = {
         }
       }
     }
-  },
-  router: { middleware: ['auth'] }
+  }
 }

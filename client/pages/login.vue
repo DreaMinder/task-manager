@@ -13,7 +13,7 @@
         />
 
         <mu-text-field
-          :label="$t('password')"
+          :label="$t('Password')"
           labelFloat
           required
           type="password"
