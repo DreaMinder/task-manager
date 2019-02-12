@@ -10,7 +10,7 @@ module.exports = {
   },
   axios: {
     prefix: '/api',
-    proxy: process.env.NODE_ENV !== 'production'
+    proxy: true
   },
   loading: { color: '#fff' },
   loadingIndicator: {
@@ -46,8 +46,8 @@ module.exports = {
       local: {
         endpoints: {
           login: { url: '/login' },
-          logout: { url: '/logout' },
-          user: { url: '/account' }
+          user: { url: '/account' },
+          logout: false,
         }
       }
     }

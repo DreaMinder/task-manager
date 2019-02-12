@@ -159,6 +159,7 @@ export default {
     logOut(){
       this.$auth.logout()
       this.$refs.sidebar.toggle()
+	  this.$router.push('/login')
     }
   },
   computed: {

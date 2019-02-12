@@ -1,7 +1,7 @@
 let ObjectId = require('mongoose').Types.ObjectId;
 let multer = require('koa-multer');
 let Jimp = require('jimp');
-const QUALITY = 70;
+const QUALITY = 80;
 
 let upload = multer({
   storage: multer.diskStorage({

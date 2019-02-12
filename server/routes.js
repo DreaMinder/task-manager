@@ -27,7 +27,7 @@ router.post('/boards', board.post)
 			.patch('/boards/:id', board.patch)
 		  .delete('/boards/:id', board.delete)
 			.patch('/boards/:id/leave', board.leave)
-			.post('/images/board', image.upload, image.return, image.crop(1800,1000));
+			.post('/images/board', image.upload, image.return, image.crop(1900,1000));
 
 router.get('/cards', card.search)
 		  .get('/cards/:cardId', card.get)

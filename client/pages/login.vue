@@ -1,7 +1,7 @@
 <template>
   <div id="login">
   	<section>
-  		<h1>{{$t('login')}}</h1>
+  		<h1>{{$t('Login')}}</h1>
 
   		<form @submit.prevent="login">
         <mu-text-field
@@ -21,7 +21,7 @@
         />
 
         <md-button class="md-raised md-primary" type="submit">
-          {{ $t('login') }}
+          {{ $t('Login') }}
         </md-button>
       </form>
   	</section>
@@ -38,7 +38,7 @@ export default {
   },
   head(){
     return {
-      title: this.$t('login')
+      title: this.$t('Login')
     }
   },
   methods: {
